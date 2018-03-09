@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -274,105 +275,102 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll"></input>
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>
-                            <th>Name</th>
-                            <th>Total</th>
-                            <th>Subtotal</th>
-                            <th>Impuesto</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1"></input>
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>FacturaA</td>
-                            <td>500</td>
-                            <td>450</td>
-                            <td>50</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox2" name="options[]" value="1"></input>
-                                    <label for="checkbox2"></label>
-                                </span>
-                            </td>
-                            <td>FacturaB</td>
-                            <td>300</td>
-                            <td>320</td>
-                            <td>80</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox3" name="options[]" value="1"></input>
-                                    <label for="checkbox3"></label>
-                                </span>
-                            </td>
-                            <td>FacturaC</td>
-                            <td>600</td>
-                            <td>550</td>
-                            <td>50</td>
-                            <td>
+                <tbody>
+                    <h:form id="facturaForm">
+                        <h:dataTable id="facturaTable" value="#{controllerFactura.listaProducto()}" var="factura" class="table table-striped table-hover table-bordered tableUpdated">
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>
+                                <h:outputText value="#{producto.id}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nombre</f:facet>
+                                <h:outputText value="#{producto.nombre}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Empresa</f:facet>
+                                <h:outputText value="#{producto.empresa.nombre}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Precio</f:facet>
+                                <h:outputText value="#{producto.precio}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Impuesto</f:facet>
+                                <h:outputText value="#{producto.impuestoVenta}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Descripcion</f:facet>
+                                <h:outputText value="#{producto.descripcion}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Accion</f:facet>
                                 <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Borrar">&#xE872;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox4" name="options[]" value="1"></input>
-                                    <label for="checkbox4"></label>
-                                </span>
-                            </td>
-                            <td>FacturaD</td>
-                            <td>800</td>
-                            <td>650</td>
-                            <td>150</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr>					
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox5" name="options[]" value="1"></input>
-                                    <label for="checkbox5"></label>
-                                </span>
-                            </td>
-                            <td>FacturaE</td>
-                            <td>250</td>
-                            <td>230</td>
-                            <td>20</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr> 
-                    </tbody>
-                </table>
+                                <div id="editEmployeeModal" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form>
+                                                <div class="modal-header">						
+                                                    <h4 class="modal-title">Editar Factura</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">					
+                                                    <div class="form-group">
+                                                        <label>Nombre</label>
+                                                        <input type="text" class="form-control" required="true"></input>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Empresa</label>
+                                                        <h:selectOneMenu value="#{controllerEmpresa.listaEmpresa()}">
+                                                            <f:selectItems value="#{controllerEmpresa.listaEmpresa()}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa.id}" />
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Precio</label>
+                                                        <textarea class="form-control" required="true"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Impuesto</label>
+                                                        <input type="text" class="form-control" required="true"></input>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Descripción</label>
+                                                        <input type="text" class="form-control" required="true"></input>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"></input>
+                                                    <input type="submit" class="btn btn-info" value="Guardar"></input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#deleteEmployeeModal"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                                <div id="deleteEmployeeModal" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form>
+                                                <div class="modal-header">						
+                                                    <h4 class="modal-title">Borrar Factura</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">					
+                                                    <p>¿Realmente desea eliminar esto?</p>
+                                                    <p class="text-warning"><small>Esta acción no se puede dehacer.</small></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">Cancelar</input>
+                                                    <input type="submit" class="btn btn-danger" ondblclick="#{controllerProducto.eliminarProducto(producto)}">Eliminar</input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </h:form>
                 <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">

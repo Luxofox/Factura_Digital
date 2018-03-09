@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/FacturaControlador.java</file>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/LoginController.java</file>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/ControllerFactura.java</file>
             <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/web/CRUDProducto.xhtml</file>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/ControllerEmpresa.java</file>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/ControllerCliente.java</file>
-            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/ControllerDocumento.java</file>
+            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/web/facturaCRUD.xhtml</file>
+            <file>file:/C:/Users/Jaime/Documents/NetBeansProjects/Proyecto%203/Factura_Digital/src/java/org/test/ControllerProducto.java</file>
         </group>
     </open-files>
 </project-private>

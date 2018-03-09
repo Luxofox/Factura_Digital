@@ -38,7 +38,7 @@ public class ControllerFactura {
         return servicioFactura.read(f);
     }
     
-    public List<Factura> listaEmpresa() throws Exception{
+    public List<Factura> listaFactura() throws Exception{
         return servicioFactura.list(factura);
     }
 }

@@ -9,10 +9,10 @@ import entidades.Producto;
 import java.util.List;
 import servicios.ServicioProducto;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "controllerProducto")
-@RequestScoped
+@SessionScoped
 public class ControllerProducto {
     ServicioProducto servicioProducto = new ServicioProducto();
     Producto producto = new Producto();

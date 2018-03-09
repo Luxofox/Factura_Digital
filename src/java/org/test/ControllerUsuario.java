@@ -46,7 +46,7 @@ public class ControllerUsuario {
         if (u != null) {
             if (servicioUsuario.list(u) != null) {
                 for (Factura f : servicioFactura.list(factura)) {
-                    if (f.getUsuario().getIdUsuario()== u.getIdUsuario()) {
+                    if (f.getUsuario().getId()== u.getId()) {
                         if(f.getEstado()!=5&&(f.getEstado() != 1 && f.getEstado() != 4)){
                         } else {
                             return false;
