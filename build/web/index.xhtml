@@ -3,112 +3,112 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-       <title>Login</title>
-	<meta charset="UTF-8"></meta>
-	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<!--===============================================================================================-->	
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"></link>
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"></link>
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"></link>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css"></link>
-	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
-<!--===============================================================================================-->
+        <title>Login</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <!--===============================================================================================-->	
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"></link>
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"></link>
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+        <!--===============================================================================================-->
     </h:head>
-    
+
     <h:body>
         <div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
+            <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+                <div class="wrap-login100">
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-logo">
+                            <i class="zmdi zmdi-landscape"></i>
+                        </span>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span>
-                                    <h:form>
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<!--<input class="input100" type="text" name="username" placeholder="Username" required="true" value="#{loginController.username}"></input>-->
-                                               <span class="focus-input100" data-placeholder="&#xf207;"> </span> 
-                                              
-                                               <h:outputLabel value="Username:"/>
-                                               <h:inputText class="input100" value="#{loginController.username}" required="true" requiredMessage="El usuario es requerido"/>
-                                            
-                                               
-					</div>
+                        <span class="login100-form-title p-b-34 p-t-27">
+                            Log in
+                        </span>
+                        <h:form>
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                    <!--<input class="input100" type="text" name="username" placeholder="Username" required="true" value="#{loginController.username}"></input>-->
+                                <span class="focus-input100" data-placeholder="&#xf207;"> </span> 
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-                                            <!--<input value="#{loginController.password}" class="input100" type="password" name="pass" placeholder="Password" required="true"></input>-->
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-                                                <h:outputLabel value="Password"/>
-                                                <h:inputSecret class="input100" value="#{loginController.password}" required="true" requiredMessage="La contaseña es requerida"/>
-					</div>
+                                <h:outputLabel value="Username:"/>
+                                <h:inputText class="input100" value="#{loginController.username}" required="true" requiredMessage="El usuario es requerido"/>
 
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
 
-					<div class="container-login100-form-btn">
-                                            <h:commandButton value="Login" class="login100-form-btn" action="#{loginController.ingresar()}"
-							/>
-						
-                                    
-					</div>
-                                    </h:form>
-					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
-							Forgot Password?
-						</a>
-					</div>
-                    
-                    <div class="text-center p-t-9">
-						<a class="txt2" href="register.xhtml">
-							Register 
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
+                            </div>
 
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+                            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                                <!--<input value="#{loginController.password}" class="input100" type="password" name="pass" placeholder="Password" required="true"></input>-->
+                                <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                                <h:outputLabel value="Password"/>
+                                <h:inputSecret class="input100" value="#{loginController.password}" required="true" requiredMessage="La contaseña es requerida"/>
+                            </div>
+
+                            <div class="contact100-form-checkbox">
+                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
+                                <label class="label-checkbox100" for="ckb1">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <h:commandButton value="" class="login100-form-btn" action="#{loginController.ingresar()}"
+                                                 />
+
+
+                            </div>
+                        </h:form>
+                        <div class="text-center p-t-90">
+                            <a class="txt1" href="#">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                        <div class="text-center p-t-9">
+                            <a class="txt2" href="register.xhtml">
+                                Register 
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="dropDownSelect1"></div>
+
+        <!--===============================================================================================-->
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/bootstrap/js/popper.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/daterangepicker/moment.min.js"></script>
+        <script src="vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="js/main.js"></script>
     </h:body>
 </html>
 

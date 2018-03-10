@@ -270,109 +270,51 @@
                             <h2>Control de <b>facturas</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar nueva factura</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Borrar</span></a>						
+                            <h:form id="agregarFacturaForm">
+                                <a  href="createFactura.xhtml" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Agregar nueva factura</span></a>
+                            </h:form>
                         </div>
                     </div>
                 </div>
                 <tbody>
                     <h:form id="facturaForm">
-                        <h:dataTable id="facturaTable" value="#{controllerFactura.listaProducto()}" var="factura" class="table table-striped table-hover table-bordered tableUpdated">
+                        <h:dataTable id="facturaTable" value="#{controllerFactura.listaFactura(1)}" var="factura" class="table table-striped table-hover table-bordered tableUpdated">
                             <h:column>
                                 <f:facet name="header">Id</f:facet>
-                                <h:outputText value="#{producto.id}" />
+                                <h:outputText value="#{factura.id}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Nombre</f:facet>
-                                <h:outputText value="#{producto.nombre}" />
+                                <f:facet name="header">Número de factura</f:facet>
+                                <h:outputText value="#{factura.consecutivoFactura}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Empresa</f:facet>
-                                <h:outputText value="#{producto.empresa.nombre}" />
+                                <f:facet name="header">Nombre de facturador</f:facet>
+                                <h:outputText value="#{factura.usuario.nombreUsuario}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Precio</f:facet>
-                                <h:outputText value="#{producto.precio}" />
+                                <f:facet name="header">Estado</f:facet>
+                                <h:outputText value="#{factura.estado}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Subtotal</f:facet>
+                                <h:outputText value="#{factura.subtotal}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Impuesto</f:facet>
-                                <h:outputText value="#{producto.impuestoVenta}" />
+                                <h:outputText value="#{factura.totalImpuestoVenta}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Descripcion</f:facet>
-                                <h:outputText value="#{producto.descripcion}" />
+                                <f:facet name="header">Total</f:facet>
+                                <h:outputText value="#{factura.total}" />
                             </h:column>
-                            <h:column>
-                                <f:facet name="header">Accion</f:facet>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                <div id="editEmployeeModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">						
-                                                    <h4 class="modal-title">Editar Factura</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">					
-                                                    <div class="form-group">
-                                                        <label>Nombre</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Empresa</label>
-                                                        <h:selectOneMenu value="#{controllerEmpresa.listaEmpresa()}">
-                                                            <f:selectItems value="#{controllerEmpresa.listaEmpresa()}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa.id}" />
-                                                        </h:selectOneMenu>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Precio</label>
-                                                        <textarea class="form-control" required="true"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Impuesto</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Descripción</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"></input>
-                                                    <input type="submit" class="btn btn-info" value="Guardar"></input>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#deleteEmployeeModal"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                                <div id="deleteEmployeeModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">						
-                                                    <h4 class="modal-title">Borrar Factura</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">					
-                                                    <p>¿Realmente desea eliminar esto?</p>
-                                                    <p class="text-warning"><small>Esta acción no se puede dehacer.</small></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">Cancelar</input>
-                                                    <input type="submit" class="btn btn-danger" ondblclick="#{controllerProducto.eliminarProducto(producto)}">Eliminar</input>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </h:column>
+
 
                         </h:dataTable>
 
-                    </h:form>
+                    </h:form>                    
+                </tbody>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Mostrando <b>5</b> de <b>25</b> entradas</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -385,97 +327,6 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div class="modal fade" id="addEmployeeModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Agregar Factura</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Total</label>
-                                <input type="email" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Subtotal</label>
-                                <textarea class="form-control" required="true"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Impuesto</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                            <input type="submit" class="btn btn-success" value="Add"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Editar Factura</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Total</label>
-                                <input type="email" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Subtotal</label>
-                                <textarea class="form-control" required="true"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Impuesto</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                            <input type="submit" class="btn btn-info" value="Save"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Borrar Factura</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <p>¿Realmente desea eliminar esto?</p>
-                            <p class="text-warning"><small>Esta acción no se puede dehacer.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                            <input type="submit" class="btn btn-danger" value="Delete"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </h:body>
 </html>

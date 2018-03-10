@@ -51,7 +51,6 @@ public class LoginController {
             return "homePage.xhtml";
         }
     }
-
     public LoginController() {
     }
 
