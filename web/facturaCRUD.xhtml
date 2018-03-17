@@ -259,6 +259,7 @@
                     }
                 });
             });
+
         </script>
     </h:head>
     <h:body>
@@ -307,7 +308,10 @@
                                 <f:facet name="header">Total</f:facet>
                                 <h:outputText value="#{factura.total}" />
                             </h:column>
-
+                            <h:column>
+                                <f:facet name="header">Accion</f:facet>
+                                <h:commandButton value="Enviar" rendered="#{controllerFactura.renderedBoton(factura.estado)}" id="botonEnviar" actionListener="#{envioCorreos.enviar()}"></h:commandButton>
+                            </h:column>
 
                         </h:dataTable>
 

@@ -52,4 +52,8 @@ public class ControllerCliente {
             return false;
         }
     }
+    
+    public List<Cliente> listaCliente() throws Exception{
+        return servicioCliente.list(cliente);
+    }
 }

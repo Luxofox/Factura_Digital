@@ -263,6 +263,7 @@
         </script>
     </h:head>
     <h:body>
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -271,7 +272,7 @@
                             <h2> <b>Productos</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>					
+                            <a role="button" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>					
                         </div>
                     </div>
                 </div>
@@ -305,129 +306,14 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Accion</f:facet>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                                <div id="editEmployeeModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">						
-                                                    <h4 class="modal-title">Editar Factura</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">					
-                                                    <div class="form-group">
-                                                        <label>Nombre</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Empresa</label>
-                                                        <h:selectOneMenu value="#{controllerEmpresa.listaEmpresa()}">
-                                                            <f:selectItems value="#{controllerEmpresa.listaEmpresa()}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa.id}" />
-                                                        </h:selectOneMenu>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Precio</label>
-                                                        <textarea class="form-control" required="true"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Impuesto</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Descripción</label>
-                                                        <input type="text" class="form-control" required="true"></input>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"></input>
-                                                    <input type="submit" class="btn btn-info" value="Guardar"></input>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="deleteEmployeeModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">						
-                                                    <h4 class="modal-title">Borrar Produto</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">					
-                                                    <p>¿Realmente desea eliminar esto?</p>
-                                                    <p class="text-warning"><small>Esta acción no se puede dehacer.</small></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"></input>
-                                                    <a href="#{controllerProducto.eliminarProducto(producto)}" class="btn btn-danger" data-dismiss="modal" value="Eliminar"></a>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h:commandButton actionListener="#{controllerProducto.eliminarProducto(producto)}" image="iconosDelete"></h:commandButton>
+                                <h:commandButton actionListener="#{controllerProducto.eliminarProducto(producto)}" image="iconosDelete"></h:commandButton>
                             </h:column>
 
                         </h:dataTable>
-
                     </h:form>
+
                 </tbody>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-        <div class="modal fade" id="addEmployeeModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Agregar Producto</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Empresa</label>
-                                <select>
-                                    <option value="#{controllerEmpresa.listaEmpresa()}"></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Precio</label>
-                                <textarea class="form-control" required="true"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Impuesto</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>
-                            <div class="form-group">
-                                <label>Descripción</label>
-                                <input type="text" class="form-control" required="true"></input>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                            <input type="submit" class="btn btn-success" value="Add"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+            </div></div>
     </h:body>
 </html>
