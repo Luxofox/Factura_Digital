@@ -47,42 +47,41 @@
                                     <!--<input class="input100" type="text" name="username" placeholder="Username" required="true" value="#{loginController.username}"></input>-->
                                 <span class="focus-input100" data-placeholder="&#xf207;"> </span> 
 
-                                <h:outputLabel value="Username:"/>
+                                <h:outputLabel value="."/>
                                 <h:inputText class="input100" value="#{loginController.username}" required="true" requiredMessage="El usuario es requerido"/>
 
 
                             </div>
 
                             <div class="wrap-input100 validate-input" data-validate="Enter password">
-                                <!--<input value="#{loginController.password}" class="input100" type="password" name="pass" placeholder="Password" required="true"></input>-->
+
                                 <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                                <h:outputLabel value="Password"/>
+                                <h:outputLabel value="."/>
                                 <h:inputSecret class="input100" value="#{loginController.password}" required="true" requiredMessage="La contaseña es requerida"/>
                             </div>
 
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
-                                <label class="label-checkbox100" for="ckb1">
-                                    Remember me
-                                </label>
-                            </div>
-
+                            <!--     <div class="contact100-form-checkbox">
+                                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
+                                     <label class="label-checkbox100" for="ckb1">
+                                         Remember me
+                                     </label>
+                                 </div>
+                            -->
                             <div class="container-login100-form-btn">
-                                <h:commandButton value="" class="login100-form-btn" action="#{loginController.ingresar()}"
-                                                 />
+                                <h:commandButton value="Login" class="login100-form-btn"  action="#{loginController.ingresar()}"/>
 
 
                             </div>
                         </h:form>
-                        <div class="text-center p-t-90">
-                            <a class="txt1" href="#">
-                                Forgot Password?
-                            </a>
-                        </div>
-
-                        <div class="text-center p-t-9">
+                        <!--  <div class="text-center p-t-90">
+                              <a class="txt1" href="#">
+                                  Forgot Password?
+                              </a>
+                          </div>
+                        -->
+                        <div class="container-login100-form-btn">
                             <a class="txt2" href="register.xhtml">
-                                Register 
+                                Registrarce 
                             </a>
                         </div>
                     </form>
