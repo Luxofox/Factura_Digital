@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Empresa</title>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link type="text/css" rel="stylesheet" href="css/navbar.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"></link>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/modalDataDismiss.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/empresaStyle.css"></link>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">Factura Electrónica</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="facturaCRUD.xhtml">Facturas</a></li>
+                        <li class="active"><a href="empresa.xhtml">Empresas</a></li>
+                        <li><a href="#">Documentos</a></li>
+                        <li><a href="configuracion.xhtml">Configuración</a></li>
+                        <li><a href="#">Otros</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#login.xhtml"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h:messages globalOnly="true" />
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Control de <b>Empresas</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal">
+                                <i class="material-icons">&#xE147;</i>Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div  class="table-responsive">
+                    <h:form enctype="multipart/form-data">
+                        <h:dataTable class="table table-striped table-hover" value="#{controllerEmpresa.listCompany}" var="company">
+                            <h:column> 
+                                <f:facet name="header">ID</f:facet>
+                                <h:outputText id="id" value="#{company.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nombre</f:facet>
+                                <h:outputText value="#{company.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Cédula</f:facet>
+                                <h:outputText value="#{company.cedula}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tipo persona</f:facet>
+                                <h:outputText value="#{company.tipo_Persona}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Telefono</f:facet>
+                                <h:outputText value="#{company.telefono}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Correo</f:facet>
+                                <h:outputText value="#{company.correo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Logo</f:facet>
+                                <h:outputText value="#{company.logo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Consecutivo</f:facet>
+                                <h:outputText value="#{company.consecutivo_Ini}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Fact. Restantes</f:facet>
+                                <h:outputText value="#{company.cantidadRestanteFacturas}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Estado</f:facet>
+                                <h:outputText value="#{company.estado}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Plan</f:facet>
+                                <h:outputText value="#{company.plan.id}"/>
+                            </h:column>
+                            <h:column> 
+                                <f:facet name="header">Acción</f:facet>
+                                <h:commandLink type="button" class="btn btn-danger" action="#{controllerEmpresa.eliminarEmpresa(company.id)}"><i class="material-icons">&#xE15C;</i>Eliminar</h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Acción</f:facet>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">
+                                    <i class="material-icons">&#xe3c9;</i>Editar</button>
+                                <div class="container">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="editModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Editar Empresa</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label>Nombre</label>
+                                                        <h:inputText class="form-control" value="#{company.nombre}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Cédula</label>
+                                                        <h:inputText class="form-control" value="#{company.cedula}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Persona</label>
+                                                        <h:selectOneMenu class="form-control" value="#{company.tipo_Persona}">
+                                                            <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
+                                                            <f:selectItem itemValue="J" itemLabel="Juridica" />
+                                                            <f:selectItem itemValue="F" itemLabel="Fisica" />
+                                                        </h:selectOneMenu>  
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Telefono</label>
+                                                        <h:inputText class="form-control" value="#{company.telefono}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Correo</label>
+                                                        <h:inputText class="form-control" value="#{company.correo}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Logo</label>
+                                                        <h:inputFile class="form-control" value="#{controllerEmpresa.file}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Consecutivo</label>
+                                                        <h:inputText class="form-control" value="#{company.consecutivo_Ini}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Estado</label>
+                                                        <h:selectOneMenu class="form-control" value="#{company.estado}">
+                                                            <f:selectItem itemLabel="Seleccione" itemDisabled="true"/>
+                                                            <f:selectItem itemValue="A" itemLabel="Activo" />
+                                                            <f:selectItem itemValue="I" itemLabel="Inactivo" />
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Plan</label>
+                                                        <h:selectOneMenu class="form-control" value="#{company.plan.id}" >
+                                                            <f:selectItems value="#{controllerEmpresa.listPlan}" var="plan" itemValue="#{plan.id}" itemLabel="#{plan.descripcion_Planes}"/>
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                </div>  
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <h:commandLink class="btn btn-info" action="#{controllerEmpresa.modificarEmpresa(company.id, company.nombre, company.cedula, company.tipo_Persona, company.telefono, company.correo, company.consecutivo_Ini, company.estado, company.plan.id)}">
+                                                    <i class="material-icons">&#xe3c9;</i>Editar</h:commandLink>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>                            
+                        </h:dataTable>
+                    </h:form>
+                    <h:form enctype="multipart/form-data">
+                        <div class="container">
+                            <!-- Modal -->
+                            <div class="modal fade" id="addModal" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Agregar Empresa</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.nombre}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Cedula</label>
+                                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.cedula}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Persona</label>  
+                                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.empresa.tipo_Persona}">
+                                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
+                                                    <f:selectItem itemValue="J" itemLabel="Juridica" />
+                                                    <f:selectItem itemValue="F" itemLabel="Fisica" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Telefono</label>
+                                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.telefono}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Correo</label>
+                                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.correo}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Logo</label>
+                                                <h:inputFile class="form-control" value="#{controllerEmpresa.file}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Consecutivo</label>
+                                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.consecutivo_Ini}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Estado</label>
+                                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.empresa.estado}">
+                                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true"/>
+                                                    <f:selectItem itemValue="A" itemLabel="Activo" />
+                                                    <f:selectItem itemValue="I" itemLabel="Inactivo" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Plan</label>
+                                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.plan.id}">
+                                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
+                                                    <f:selectItems value="#{controllerEmpresa.listPlan}" var="plan" itemValue="#{plan.id}" itemLabel="#{plan.descripcion_Planes}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>                                                
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandLink class="btn btn-success" action="#{controllerEmpresa.insertarEmpresa}">
+                                            <i class="material-icons">&#xE147;</i>
+                                            Agregar
+                                        </h:commandLink>                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

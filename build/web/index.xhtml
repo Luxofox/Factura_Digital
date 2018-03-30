@@ -28,6 +28,12 @@
         <link rel="stylesheet" type="text/css" href="css/util.css"></link>
         <link rel="stylesheet" type="text/css" href="css/main.css"></link>
         <!--===============================================================================================-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css"/>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/base/jquery-ui.css"/>
+
     </h:head>
 
     <h:body>
@@ -80,9 +86,33 @@
                           </div>
                         -->
                         <div class="container-login100-form-btn">
-                            <a class="txt2" href="register.xhtml">
+                            
+                            
+                          
+                            
+                            
+            <a class="checked" href="http://www.google.com"> Registrarce</a>
+    <script type="text/javascript">
+
+        $(function() {
+            $('.checked').click(function(e) {
+                e.preventDefault();
+                var dialog = $('<p>¿Qué desea registrar?</p>').dialog({
+                    buttons: {
+                        "Registrar Usuario": function changePage(){ window.location.href="register.xhtml";},
+                        "Registrar Empresa":  function changePage(){ window.location.href="registerCompany.xhtml";},
+                        "Cancel":  function() {
+                            dialog.dialog('close');
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+                          <!--  <a class="txt2" href="register.xhtml">
                                 Registrarce 
-                            </a>
+                            </a>   -->
                         </div>
                     </form>
                 </div>
