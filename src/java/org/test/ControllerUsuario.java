@@ -7,9 +7,13 @@ package org.test;
 
 import entidades.Factura;
 import entidades.Usuario;
+import entidades.Empresa;
+import entidades.Plan;
 import java.util.List;
 import servicios.ServicioFactura;
 import servicios.ServicioUsuario;
+import servicios.ServicioEmpresa;
+import servicios.ServicioPlan;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 //import javax.faces.bean.ViewScoped;
@@ -21,8 +25,12 @@ public class ControllerUsuario {
 
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     ServicioFactura servicioFactura = new ServicioFactura();
+    ServicioEmpresa servicioEmpresa = new ServicioEmpresa();
+    ServicioPlan servicePlan = new ServicioPlan();
     Factura factura = new Factura();
     Usuario usuario = new Usuario();
+    Empresa empresa = new Empresa();
+    Plan plan = new Plan();
 
     public Usuario getUsuario() {
         return usuario;
@@ -42,14 +50,44 @@ public class ControllerUsuario {
             return "CrudUsuario";
         }
     }
-
-    public String insertarUsuarioRegister() throws Exception {
+        
+        public String insertarUsuarioRegister() throws Exception {
         if (usuario == null) {
-            return "registro";
+            return "registerUser";
         } else {
             usuario.setEstado("A");
             servicioUsuario.insert(usuario);
             clearUsuario();
+            return "index";
+        }
+    }    
+
+    public String insertarUsuarioEmpresaRegister() throws Exception {
+        if (usuario == null) {
+            return "registro";
+        } else {
+            usuario.setEstado("A");
+            
+            
+            plan.setId(1);
+            plan = servicePlan.read(plan);
+            
+            empresa.setNombre(usuario.getNombreUsuario());
+            empresa.setCedula(usuario.getCedulaUsuario());
+            empresa.setTelefono(usuario.getTelefono());
+            empresa.setCorreo(usuario.getCorreo());
+            empresa.setPlan(plan);
+            empresa.setCantidadRestanteFacturas(plan.getCantidad());
+            empresa.setTipo_Persona("F");
+            empresa.setConsecutivo_Ini(1);
+            empresa.setEstado("A");
+            servicioEmpresa.insert(this.empresa);
+            servicioUsuario.insert(usuario);
+            empresa = new Empresa();
+            plan = new Plan();
+            
+            clearUsuario();
+            
             return "index.xhtml";
         }
     }
@@ -62,6 +100,7 @@ public class ControllerUsuario {
             usuario.setEstado("");
             usuario.setNombreUsuario("");
             usuario.setTelefono(0);
+            usuario.setCedulaUsuario(0);
     
     }
 
@@ -75,6 +114,7 @@ public class ControllerUsuario {
             usuario.setEstado(user.getEstado());
             usuario.setNombreUsuario(user.getNombreUsuario());
             usuario.setTelefono(user.getTelefono());
+            usuario.setCedulaUsuario(user.getCedulaUsuario());
 
         }
 

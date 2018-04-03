@@ -71,7 +71,7 @@ public class ControllerEmpresa implements Serializable {
             logo = IOUtils.toByteArray(input);
             return logo;
         } catch (Exception e) {
-            System.out.println("El logo esta vacia o no a sido seleccionado.");
+            System.out.println("El logo esta vacio o no a sido seleccionado.");
             System.out.println(e);
             return null;
         }

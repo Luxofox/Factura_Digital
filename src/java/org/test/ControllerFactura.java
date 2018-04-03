@@ -47,7 +47,7 @@ public class ControllerFactura {
     public List<Factura> listaFactura(int id) throws Exception {
         List<Factura> listFactura = new ArrayList<>();
         for (Factura f : servicioFactura.list(factura)) {
-            if (f.getUsuario().getId() == id) {
+            if (f.getUsuario().getId()== id) {
                 listFactura.add(f);
             }
         }

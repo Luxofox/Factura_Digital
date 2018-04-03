@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Login</title>
+        <title>Registrar Usuario</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <!--===============================================================================================-->	
@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"></link>
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css"></link>
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"></link>
         <!--===============================================================================================-->
@@ -28,114 +30,104 @@
         <link rel="stylesheet" type="text/css" href="css/util.css"></link>
         <link rel="stylesheet" type="text/css" href="css/main.css"></link>
         <!--===============================================================================================-->
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css"/>
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/base/jquery-ui.css"/>
-
     </h:head>
 
-    <h:body>
+    <h:body style="background-color: #999999;">
+
         <div class="limiter">
             <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
                 <div class="wrap-login100">
-                    <form class="login100-form validate-form">
+                  
                         <span class="login100-form-logo">
                             <i class="zmdi zmdi-landscape"></i>
                         </span>
 
                         <span class="login100-form-title p-b-34 p-t-27">
-                            Log in
+                           Registrar Usuario
                         </span>
-                        <h:form>
+
+                        <h:form enctype="multipart/form-data">
+
+
                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                                    <!--<input class="input100" type="text" name="username" placeholder="Username" required="true" value="#{loginController.username}"></input>-->
-                                <span class="focus-input100" data-placeholder="&#xf207;"> </span> 
+                                <span class="focus-input100" > </span> 
 
-                                <h:outputLabel value="."/>
-                                <h:inputText class="input100" value="#{loginController.username}" required="true" requiredMessage="El usuario es requerido"/>
-
-
-                            </div>
-
-                            <div class="wrap-input100 validate-input" data-validate="Enter password">
-
-                                <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                                <h:outputLabel value="."/>
-                                <h:inputSecret class="input100" value="#{loginController.password}" required="true" requiredMessage="La contaseña es requerida"/>
-                            </div>
-
-                            <!--     <div class="contact100-form-checkbox">
-                                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
-                                     <label class="label-checkbox100" for="ckb1">
-                                         Remember me
-                                     </label>
-                                 </div>
-                            -->
-                            <div class="container-login100-form-btn">
-                                <h:commandButton value="Login" class="login100-form-btn"  action="#{loginController.ingresar()}"/>
+                                <h:outputLabel value="Nombre de Usuario"/>
+                                <h:inputText  value="#{controllerUsuario.usuario.nombreUsuario}" required="true" requiredMessage="El nombre de usuario es requerido"/>
 
 
                             </div>
                             
-                            <div class="text-center ">
-                              <a class="txt1" href="register.xhtml">
-                                  Registrar solo Usuario
-                              </a>
-                          </div>
-                            
-                             <div class="text-center ">
-                              <a class="txt1" href="registerCompany.xhtml">
-                                  Registrar Empresa y Usuario
-                              </a>
-                          </div>
-                            
+                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                
+                                <h:outputLabel value="Cedula"/>
+                                <h:inputText  id="cedula" value="#{controllerUsuario.usuario.cedulaUsuario}" converterMessage="Por favor ingrese unicamente numeros para cedula" required="true" requiredMessage="La cedula de usuario es requerida"/>
+
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                
+                                <h:outputLabel value="Telefono"/>
+                                <h:inputText  id="phone" value="#{controllerUsuario.usuario.telefono}" converterMessage="Por favor ingrese unicamente numeros para telefono" required="true" requiredMessage="El telefono es requerido"/>
+
+                            </div>
+
+                               <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                
+                                 <h:outputLabel value="Email"/>
+                                 <h:inputText  id="email" value="#{controllerUsuario.usuario.correo}" required="true" requiredMessage="El correo es requerido"/>
+
+                            </div>
+
+                              <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                
+                                <h:outputLabel value="Contraseña"/>
+                            <h:inputText  id="contrasenna" value="#{controllerUsuario.usuario.contraseña}" required="true" requiredMessage="la contraseña es requerida"/>
+
+                            </div>
+                           
+                             <div class="container-login100-form-btn">
+                                 <h:commandButton value="Registrarse" class="login100-form-btn"  action="#{controllerUsuario.insertarUsuarioRegister()}"/>
+
+
+                            </div>
+                          
                         </h:form>
-                        <!--  <div class="text-center p-t-90">
-                              <a class="txt1" href="#">
-                                  Forgot Password?
-                              </a>
-                          </div>
-                        -->
-                        
-                        
-                    <!--    <div class="container-login100-form-btn">
-                            
-                            
-                          
-                            
-                            
-            <a class="checked" href="http://www.google.com"> Registrarce</a>
-    <script type="text/javascript">
 
-        $(function() {
-            $('.checked').click(function(e) {
-                e.preventDefault();
-                var dialog = $('<p>¿Qué desea registrar?</p>').dialog({
-                    buttons: {
-                        "Registrar Usuario": function changePage(){ window.location.href="register.xhtml";},
-                        "Registrar Empresa":  function changePage(){ window.location.href="registerCompany.xhtml";},
-                        "Cancel":  function() {
-                            dialog.dialog('close');
-                        }
-                    }
-                });
-            });
-        });
 
-    </script>
-                     
-                          
-                          
-                        </div>  -->
-                    </form>
+                        <!--<div class="flex-m w-full p-b-33">
+                                <div class="contact100-form-checkbox">
+                                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
+                                        <label class="label-checkbox100" for="ckb1">
+                                                <span class="txt1">
+                                                        I agree to the
+                                                        <a href="#" class="txt2 hov1">
+                                                                Terms of User
+                                                        </a>
+                                                </span>
+                                        </label>
+                                </div>
+
+                                
+                        </div>-->
+
+
+
+                        <div class="container-login100-form-btn">
+                            <a href="index.xhtml" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+                                LogIn
+                                <i class="fa fa-long-arrow-right m-l-5"></i>
+                            </a>
+                        </div>
                 </div>
             </div>
         </div>
 
 
-        <div id="dropDownSelect1"></div>
 
         <!--===============================================================================================-->
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -153,6 +145,6 @@
         <script src="vendor/countdowntime/countdowntime.js"></script>
         <!--===============================================================================================-->
         <script src="js/main.js"></script>
-    </h:body>
-</html>
 
+    </h:body>
+</xhtml>

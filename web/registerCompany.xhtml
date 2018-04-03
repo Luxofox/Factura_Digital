@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:h="http://xmlns.jcp.org/jsf/html">
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registrar Empresa</title>
         <meta charset="UTF-8"></meta>
@@ -37,7 +38,7 @@
         <div class="limiter">
             <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
                 <div class="wrap-login100">
-                    <form class="login100-form validate-form">
+                    
                         <span class="login100-form-logo">
                             <i class="zmdi zmdi-landscape"></i>
                         </span>
@@ -46,48 +47,100 @@
                             Registrar Empresa
                         </span>
 
-                        <h:form>
+                        <h:form enctype="multipart/form-data">
 
 
                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
                                 <span class="focus-input100" > </span> 
 
-                                <h:outputLabel value="Nombre de Usuario"/>
-                                <h:inputText  value="#{controllerUsuario.usuario.nombreUsuario}" required="true" requiredMessage="El nombre de usuario es requerido"/>
+                                <h:outputLabel value="Nombre de Empresa"/>
+                                <h:inputText  value="#{controllerEmpresa.empresa.nombre}" required="true" requiredMessage="El nombre de la empresa es requerido"/>
 
 
                             </div>
 
                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
                                 <span class="focus-input100" > </span> 
-                                
+
+                                <h:outputLabel value="Cedula"/>
+                                <h:inputText  value="#{controllerEmpresa.empresa.cedula}" converterMessage="Por favor ingrese unicamente nuemros para la cedula" required="true" requiredMessage="La cedula es requerida" />
+
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                <label>Persona</label>  
+                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.empresa.tipo_Persona}">
+                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
+                                    <f:selectItem itemValue="J" itemLabel="Juridica" />
+                                    <f:selectItem itemValue="F" itemLabel="Fisica" />
+                                </h:selectOneMenu>
+
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+
                                 <h:outputLabel value="Telefono"/>
-                                <h:inputText  id="phone" value="#{controllerUsuario.usuario.telefono}" required="true" requiredMessage="El telefono es requerido"/>
-
+                                <h:inputText  value="#{controllerEmpresa.empresa.telefono}" converterMessage="Por favor ingrese unicamente numeros para telefono" required="true" requiredMessage="El telefono es requerida" />
                             </div>
 
-                               <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
                                 <span class="focus-input100" > </span> 
-                                
-                                 <h:outputLabel value="Email"/>
-                            <h:inputText  id="email" value="#{controllerUsuario.usuario.correo}" required="true" requiredMessage="El correo es requerido"/>
+
+                                <h:outputLabel value="Email"/>
+                                <h:inputText value="#{controllerEmpresa.empresa.correo}"  required="true" requiredMessage="El correo es requerido"/>
 
                             </div>
 
-                              <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
                                 <span class="focus-input100" > </span> 
-                                
-                                <h:outputLabel value="Contraseña"/>
-                            <h:inputText  id="contrasenna" value="#{controllerUsuario.usuario.contraseña}" required="true" requiredMessage="la contraseña es requerida"/>
+                                <label>Logo</label>
+                                <h:inputFile class="form-control" value="#{controllerEmpresa.file}" />
 
                             </div>
-                           
-                             <div class="container-login100-form-btn">
-                                 <h:commandButton value="Registrarse" class="login100-form-btn"  actionListener="#{controllerUsuario.insertarUsuarioRegister()}" action=""/>
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+
+                                <label>Consecutivo</label>
+                                <h:inputText class="form-control" value="#{controllerEmpresa.empresa.consecutivo_Ini}" converterMessage="Por favor ingrese unicamente numeros para el consecutivo de facturas" />
+
+                            </div>
+
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+
+
+                                <label>Estado</label>
+                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.empresa.estado}">
+                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true"/>
+                                    <f:selectItem itemValue="A" itemLabel="Activo" />
+                                    <f:selectItem itemValue="I" itemLabel="Inactivo" />
+                                </h:selectOneMenu>
+
+                            </div>   
+
+                            <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                <label>Plan</label>
+                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.plan.id}">
+                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
+                                    <f:selectItems value="#{controllerEmpresa.listPlan}" var="plan" itemValue="#{plan.id}" itemLabel="#{plan.descripcion_Planes}"/>
+                                </h:selectOneMenu>
+
+                            </div>
+
+
+
+
+                            <div class="container-login100-form-btn">
+                                <h:commandButton value="Registrar Empresa" class="login100-form-btn"  actionListener="#{controllerEmpresa.insertarEmpresa}" action="registerUser"/>
 
 
                             </div>
-                          
+
                         </h:form>
 
 
@@ -115,7 +168,6 @@
                                 <i class="fa fa-long-arrow-right m-l-5"></i>
                             </a>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -57,12 +57,20 @@
 
 
                             </div>
+                            
+                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                                <span class="focus-input100" > </span> 
+                                
+                                <h:outputLabel value="Cedula"/>
+                                <h:inputText  id="cedula" value="#{controllerUsuario.usuario.cedulaUsuario}" converterMessage="Por favor ingrese unicamente numeros para cedula" required="true" requiredMessage="La cedula de usuario es requerida"/>
+
+                            </div>
 
                             <div class="wrap-input100 validate-input" data-validate = "Enter username">
                                 <span class="focus-input100" > </span> 
                                 
                                 <h:outputLabel value="Telefono"/>
-                                <h:inputText  id="phone" value="#{controllerUsuario.usuario.telefono}" required="true" requiredMessage="El telefono es requerido"/>
+                                <h:inputText  id="phone" value="#{controllerUsuario.usuario.telefono}" converterMessage="Por favor ingrese unicamente numeros para telefono" required="true" requiredMessage="El telefono es requerido"/>
 
                             </div>
 
@@ -70,7 +78,7 @@
                                 <span class="focus-input100" > </span> 
                                 
                                  <h:outputLabel value="Email"/>
-                            <h:inputText  id="email" value="#{controllerUsuario.usuario.correo}" required="true" requiredMessage="El correo es requerido"/>
+                                 <h:inputText  id="email" value="#{controllerUsuario.usuario.correo}" required="true" requiredMessage="El correo es requerido"/>
 
                             </div>
 
@@ -83,7 +91,7 @@
                             </div>
                            
                              <div class="container-login100-form-btn">
-                                <h:commandButton value="Registrarse" class="login100-form-btn"  action="#{controllerUsuario.insertarUsuarioRegister()}"/>
+                                 <h:commandButton value="Registrarse" class="login100-form-btn"  action="#{controllerUsuario.insertarUsuarioEmpresaRegister()}"/>
 
 
                             </div>

@@ -322,8 +322,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Empresa</label>
-                                                        <h:selectOneMenu value="#{controllerEmpresa.listaEmpresa()}">
-                                                            <f:selectItems value="#{controllerEmpresa.listaEmpresa()}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa.id}" />
+                                                        <h:selectOneMenu value="#{controllerEmpresa.listCompany()}">
+                                                            <f:selectItems value="#{controllerEmpresa.listCompany()}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa.id}" />
                                                         </h:selectOneMenu>
                                                     </div>
                                                     <div class="form-group">
@@ -405,7 +405,7 @@
                             <div class="form-group">
                                 <label>Empresa</label>
                                 <select>
-                                    <option value="#{controllerEmpresa.listaEmpresa()}"></option>
+                                    <option value="#{controllerEmpresa.listCompany}"></option>
                                 </select>
                             </div>
                             <div class="form-group">
