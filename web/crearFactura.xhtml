@@ -35,15 +35,15 @@
                     <h:form class="needs-validation">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="empresa">Empresa</label> <h:selectOneMenu
-                                    class="custom-select d-block w-100" id="empresa" required="true" valueChangeListener="#{controllerFactura.productoSelect}" onchange="submit()" converter="empresaConverter">
+                                <label for="empresa">Empresa1</label> <h:selectOneMenu
+                                    class="custom-select d-block w-100" id="empresa" valueChangeListener="#{controllerFactura.productoSelect}" converter="empresaConverter" value="#{controllerFactura.empresa}">
                                     <f:selectItems value="#{controllerFactura.listaEmpresaUsuario(1)}" var="empresa" itemLabel="#{empresa.empresa.nombre}" itemValue="#{empresa.empresa.id}"></f:selectItems>
                                 </h:selectOneMenu>
                                 <div class="invalid-feedback">Este campo es requerido.</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="Cliente">Cliente</label> <h:selectOneMenu
-                                    class="custom-select d-block w-100" id="cliente" required="true" converter="clienteConverter">
+                                    class="custom-select d-block w-100" id="cliente" converter="clienteConverter">
                                     <f:selectItems value="#{controllerCliente.listaCliente()}" var="cliente" itemLabel="#{cliente.nombreCliente}" itemValue="#{cliente.id}"></f:selectItems>
                                 </h:selectOneMenu>
                                 <div class="invalid-feedback">Este campo es requerido.</div>
@@ -70,7 +70,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">%</span>
                                     </div>
-                                    <input type="number" placeholder="0" min="0" max="100" class="form-control" value="#{controllerFactura.descuento}"></input>
+                                    <input placeholder="0" min="0" max="100" class="form-control" value="#{controllerFactura.descuento}"></input>
                                     <div class="invalid-feedback">Este campo es requerido.</div>
                                 </div>
                             </div>

@@ -9,16 +9,35 @@
     <h:body>
         Hello from Facelets
         <h:form class="needs-validation">
-            
             <div class="row">
-              <div class="col-md-5 mb-3">
-                                <label for="item">Productos y servicios</label> 
-                                
-                                <div class="invalid-feedback">Este campo es requerido.</div>
-                            </div>
+                <div class="col-md-6 mb-3">
+                    <label for="empresa">Empresa</label> <h:selectOneMenu
+                        class="custom-select d-block w-100" id="empresa" required="true" valueChangeListener="#{controllerFactura.productoSelect}" onchange="submit()" converter="empresaConverter">
+                        <f:selectItems value="#{controllerFactura.listaEmpresaUsuario(1)}" var="empresa" itemLabel="#{empresa.empresa.nombre}" itemValue="#{empresa.empresa.id}"></f:selectItems>
+                    </h:selectOneMenu>
+                    <div class="invalid-feedback">Este campo es requerido.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Cliente">Cliente</label> <h:selectOneMenu
+                        class="custom-select d-block w-100" id="cliente" required="true" converter="clienteConverter">
+                        <f:selectItems value="#{controllerCliente.listaCliente()}" var="cliente" itemLabel="#{cliente.nombreCliente}" itemValue="#{cliente.id}"></f:selectItems>
+                    </h:selectOneMenu>
+                    <div class="invalid-feedback">Este campo es requerido.</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="item">Productos y servicios</label> 
+                    <h:selectOneMenu 
+                        class="custom-select d-block w-100" id="items" title="Seleccione un producto o servicio" converter="facturaConverter">
+                        <f:selectItems value="#{controllerFactura.listaProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.id}"></f:selectItems>
+                    </h:selectOneMenu>
+                    <div class="invalid-feedback">Este campo es requerido.</div>
+                </div>
                 <div class="col-md-4 mb-3">
-                    <label for="cantidad">Cantidad</label> <input type="number"
-                                                                  min="1" class="form-control" id="cantidad" placeholder="0" value="#{controllerFactura.cantidadProducto}" ></input>
+                    <label for="cantidad">Cantidad</label> <input
+                        min="1" class="form-control" id="cantidad" placeholder="0" value="#{controllerFactura.cantidadProducto}" ></input>
                     <div class="invalid-feedback">Este campo es requerido.</div>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -27,14 +46,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">%</span>
                         </div>
-                        <input type="number" min="0" max="100" class="form-control" value="#+{controllerFactura.descuento}"></input>
+                        <input placeholder="0" min="0" max="100" class="form-control" value="#{controllerFactura.descuento}"></input>
                         <div class="invalid-feedback">Este campo es requerido.</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <h:commandButton class="btn btn-primary btn-lg btn-block" value="Agregar al carrito" action="#{controllerFactura.addListaCarrito(5)}"></h:commandButton> 
+                    <h:commandButton class="btn btn-primary btn-lg btn-block" value="Agregar al carrito" action="#{controllerFactura.addListaCarrito(producto.id)}"></h:commandButton> 
                 </div>
             </div>
             <hr class="mb-4"></hr>
@@ -47,7 +66,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="iv">Impuesto de Venta del producto seleccionado</label>
-                    <output class="form-control" id="iv" value="#{producto.impuestoVenta}">#{producto.impuestoVenta}</output>
+                    <output class="form-control" id="iv" value="#{controllerFactura.impuestoVenta}"></output>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="total">Total</label>
@@ -57,10 +76,10 @@
             <hr class="mb-4"></hr>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <button class="btn btn-danger btn-lg btn-block" type="submit">Cancelar</button>
+                    <h:button class="btn btn-danger btn-lg btn-block" outcome="facturaCRUD.xhtml" value="Cancelar"></h:button>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Agregar</button>
+                    <h:commandButton class="btn btn-primary btn-lg btn-block" actionListener="#{controllerFactura.agregarFactura(empresa.empresa.id, cliente.id)}" value="Agregar" type="submit"></h:commandButton>
                 </div>
             </div>
         </h:form>

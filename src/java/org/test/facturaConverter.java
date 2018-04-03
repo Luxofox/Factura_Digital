@@ -22,20 +22,19 @@ import servicios.ServicioProducto;
 public class facturaConverter implements Converter {
     
     private ServicioProducto sp;
-    private Producto producto;
     
     public facturaConverter() {
         sp = new ServicioProducto();
     }
 
-@Override
+@Override  
     public Object getAsObject(FacesContext facesContext, UIComponent component,
             String submittedValue) {
         if (submittedValue != null && submittedValue.trim().length() > 0) {
             try {
-                producto.setId(Integer.parseInt(submittedValue));
-                return sp.read(producto);
+                return sp.findByPK(Integer.parseInt(submittedValue));
             } catch (Exception exception) {
+                exception.printStackTrace();
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion error", "No es un Producto válido."));
             }
         } else {

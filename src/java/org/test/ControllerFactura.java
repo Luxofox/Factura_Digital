@@ -5,6 +5,7 @@
  */
 package org.test;
 
+import entidades.Empresa;
 import entidades.Empresacliente;
 import entidades.Empresausuario;
 import entidades.Factura;
@@ -35,6 +36,7 @@ public class ControllerFactura implements Serializable {
     List<Item> carrito = new ArrayList();
     List<Producto> listProducto;
     Producto producto = new Producto();
+    Empresa empresa = new Empresa();
     double subtotal = 0;
     double total = 0;
     double impuestoVenta = 0;
@@ -43,6 +45,14 @@ public class ControllerFactura implements Serializable {
 
     public ControllerFactura() throws Exception {
         this.listProducto = servicioExtra.listProductoEmpresa("1");
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public double getImpuestoVenta() {
