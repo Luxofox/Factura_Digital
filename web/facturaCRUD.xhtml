@@ -259,6 +259,7 @@
                     }
                 });
             });
+
         </script>
     </h:head>
     <h:body>
@@ -271,7 +272,7 @@
                         </div>
                         <div class="col-sm-6">
                             <h:form id="agregarFacturaForm">
-                                <a  href="createFactura.xhtml" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Agregar nueva factura</span></a>
+                                <a  href="crearFactura.xhtml" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Agregar nueva factura</span></a>
                             </h:form>
                         </div>
                     </div>
@@ -307,7 +308,10 @@
                                 <f:facet name="header">Total</f:facet>
                                 <h:outputText value="#{factura.total}" />
                             </h:column>
-
+                            <h:column>
+                                <f:facet name="header">Accion</f:facet>
+                                <h:commandButton value="Enviar" rendered="#{controllerFactura.renderedBoton(factura.estado)}" id="botonEnviar" actionListener="#{envioCorreos.enviar()}"></h:commandButton>
+                            </h:column>
 
                         </h:dataTable>
 

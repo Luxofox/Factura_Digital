@@ -41,11 +41,9 @@ public class ControllerProducto {
             return null;
     }
     
-    public boolean eliminarProducto(Producto p) throws Exception {
+    public void eliminarProducto(Producto p) throws Exception {
         if (p != null) {
-            return servicioProducto.delete(p);
-        } else {
-            return false;
+             servicioProducto.delete(p);
         }
     }
     

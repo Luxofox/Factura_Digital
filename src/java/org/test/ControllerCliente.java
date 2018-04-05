@@ -21,7 +21,7 @@ public class ControllerCliente {
 
     ServicioCliente servicioCliente = new ServicioCliente();
     Cliente cliente = new Cliente();
-    
+
         public boolean insertarCliente(Cliente c) throws Exception {
         if (c != null) {
             return false;
@@ -49,5 +49,9 @@ public class ControllerCliente {
         } else {
             return false;
         }
+    }
+
+    public List<Cliente> listaCliente() throws Exception{
+        return servicioCliente.list(cliente);
     }
 }
