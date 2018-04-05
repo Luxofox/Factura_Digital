@@ -95,7 +95,7 @@ public class ControllerUsuario {
     public void clearUsuario(){
     
             usuario.setId(0);
-            usuario.setContraseña("");
+            usuario.setContrasena("");
             usuario.setCorreo("");
             usuario.setEstado("");
             usuario.setNombreUsuario("");
@@ -109,7 +109,7 @@ public class ControllerUsuario {
         if (user != null) {
 
             usuario.setId(user.getId());
-            usuario.setContraseña(user.getContraseña());
+            usuario.setContrasena(user.getContrasena());
             usuario.setCorreo(user.getCorreo());
             usuario.setEstado(user.getEstado());
             usuario.setNombreUsuario(user.getNombreUsuario());
