@@ -43,12 +43,13 @@ public class ControllerEmpresa implements Serializable {
     Plan plan = new Plan();
     Part file;
 
-    public void insertarEmpresa() throws Exception {
+    public String insertarEmpresa() throws Exception {
         try {
             plan = servicePlan.read(plan);
             
             this.empresa.setPlan(plan);
             this.empresa.setCantidadRestanteFacturas(plan.getCantidad());
+            this.empresa.setTipo_Persona("J");
 
             if (partToByteArray() != null) {
                 this.empresa.setLogo(partToByteArray());
@@ -58,9 +59,11 @@ public class ControllerEmpresa implements Serializable {
             empresa = new Empresa();
             file = null;
             plan = new Plan();
+            return "empresa.xhtml";
         } catch (Exception e) {
             System.out.println("Error al insertar.");
             System.out.println(e);
+            return "";
         }
     }
 
@@ -77,8 +80,8 @@ public class ControllerEmpresa implements Serializable {
         }
     }
 
-    public void modificarEmpresa(int companyId, String companyName, int companyCedula, String companyPersona,
-            int companyTelefono, String companyEmail, int companyConsecutivo, String companyEstado, int companyPlanId) throws Exception {
+    public void modificarEmpresa(int companyId, String companyName, int companyCedula, int companyTelefono, 
+            String companyEmail, int companyConsecutivo, String companyEstado, int companyPlanId) throws Exception {
         try {
             this.plan.setId(companyPlanId);
 
@@ -100,7 +103,7 @@ public class ControllerEmpresa implements Serializable {
 
             this.empresa.setNombre(companyName);
             this.empresa.setCedula(companyCedula);
-            this.empresa.setTipo_Persona(companyPersona);
+            this.empresa.setTipo_Persona("J");
             this.empresa.setTelefono(companyTelefono);
             this.empresa.setCorreo(companyEmail);
             this.empresa.setConsecutivo_Ini(companyConsecutivo);

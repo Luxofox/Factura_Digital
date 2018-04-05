@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Empresa</title>
         <meta charset="utf-8"></meta>
@@ -32,15 +31,16 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Inicio</a></li>
+                        <li><a href="homePage.xhtml">Inicio</a></li>
                         <li><a href="facturaCRUD.xhtml">Facturas</a></li>
                         <li class="active"><a href="Empresa.xhtml">Empresas</a></li>
+                        <li><a href="CRUDUsuario.xhtml">Usuarios</a></li>
                         <li><a href="#">Documentos</a></li>
                         <li><a href="configuracion.xhtml">Configuración</a></li>
                         <li><a href="#">Otros</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#login.xhtml"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                        <li><a href="index.xhtml"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
                     </ul>
                 </div>
             </div>
@@ -137,14 +137,6 @@
                                                         <h:inputText class="form-control" value="#{company.cedula}" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Persona</label>
-                                                        <h:selectOneMenu class="form-control" value="#{company.tipo_Persona}">
-                                                            <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
-                                                            <f:selectItem itemValue="J" itemLabel="Juridica" />
-                                                            <f:selectItem itemValue="F" itemLabel="Fisica" />
-                                                        </h:selectOneMenu>  
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label>Telefono</label>
                                                         <h:inputText class="form-control" value="#{company.telefono}" />
                                                     </div>
@@ -178,7 +170,7 @@
 
                                             </div>
                                             <div class="modal-footer">
-                                                <h:commandLink class="btn btn-info" action="#{controllerEmpresa.modificarEmpresa(company.id, company.nombre, company.cedula, company.tipo_Persona, company.telefono, company.correo, company.consecutivo_Ini, company.estado, company.plan.id)}">
+                                                <h:commandLink class="btn btn-info" action="#{controllerEmpresa.modificarEmpresa(company.id, company.nombre, company.cedula, company.telefono, company.correo, company.consecutivo_Ini, company.estado, company.plan.id)}">
                                                     <i class="material-icons">&#xe3c9;</i>Editar</h:commandLink>                                            
                                             </div>
                                         </div>
@@ -206,14 +198,6 @@
                                             <div class="form-group">
                                                 <label>Cedula</label>
                                                 <h:inputText class="form-control" value="#{controllerEmpresa.empresa.cedula}" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Persona</label>  
-                                                <h:selectOneMenu class="form-control" value="#{controllerEmpresa.empresa.tipo_Persona}">
-                                                    <f:selectItem itemLabel="Seleccione" itemDisabled="true" />
-                                                    <f:selectItem itemValue="J" itemLabel="Juridica" />
-                                                    <f:selectItem itemValue="F" itemLabel="Fisica" />
-                                                </h:selectOneMenu>
                                             </div>
                                             <div class="form-group">
                                                 <label>Telefono</label>
@@ -263,3 +247,4 @@
         </div>
     </h:body>
 </html>
+
