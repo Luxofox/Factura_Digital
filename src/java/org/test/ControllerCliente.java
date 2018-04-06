@@ -11,6 +11,7 @@ package org.test;
  * @author Li
  */
 import entidades.Cliente;
+import java.util.List;
 import servicios.ServicioCliente;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
