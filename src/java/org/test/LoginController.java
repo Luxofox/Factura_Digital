@@ -23,7 +23,7 @@ public class LoginController {
     public String ingresar() throws Exception {
 
 
-        if (!servicioLogin.login(username, password)) {
+        if (!servicioLogin.login(username,password)) {
             return "index";
         } else {
             return "homePage";

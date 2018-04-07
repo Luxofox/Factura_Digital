@@ -19,7 +19,7 @@ public class ControllerConfiguracion {
     
     @PostConstruct
     public void onLoad(){
-        LoginController login = new LoginController();
+        //LoginController login = new LoginController();
         //user = login.user;  
     }
     

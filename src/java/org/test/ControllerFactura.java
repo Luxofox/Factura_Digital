@@ -5,6 +5,7 @@
  */
 package org.test;
 
+import entidades.Cliente;
 import entidades.Empresa;
 import entidades.Empresacliente;
 import entidades.Empresausuario;
@@ -20,6 +21,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import servicios.ServiceLogin;
+import servicios.ServicioEmpresa;
+import servicios.ServicioItem;
 import servicios.ServicioProducto;
 import servicios.ServicioUsuario;
 
@@ -31,20 +34,48 @@ public class ControllerFactura implements Serializable {
     ServiceLogin servicioExtra = new ServiceLogin();
     ServicioProducto servicioProducto = new ServicioProducto();
     ServicioUsuario servicioUsuario = new ServicioUsuario();
+    ServicioItem servicioItem = new ServicioItem();
+    ServicioEmpresa servicioEmpresa = new ServicioEmpresa();
     Factura factura = new Factura();
     Item item = new Item();
     List<Item> carrito = new ArrayList();
     List<Producto> listProducto;
+    List<Cliente> listCliente;
     Producto producto = new Producto();
     Empresa empresa = new Empresa();
-    double subtotal = 0;
-    double total = 0;
-    double impuestoVenta = 0;
+    Cliente cliente = new Cliente();
+    double subtotal;
+    double total;
+    double impuestoVenta;
     double descuento;
     int cantidadProducto;
+    int reload = 1;
 
     public ControllerFactura() throws Exception {
-        this.listProducto = servicioExtra.listProductoEmpresa("1");
+        this.listProducto = servicioExtra.listProductoEmpresa(empresa.getId());
+    }
+    
+    public boolean reload(){
+        if(reload==1){
+            reload=0;
+            return true;
+        }else
+            return false;
+    }
+    public List<Cliente> getListCliente() {
+        return listCliente;
+    }
+
+    public void setListCliente(List<Cliente> listCliente) {
+        this.listCliente = listCliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Empresa getEmpresa() {
@@ -63,16 +94,8 @@ public class ControllerFactura implements Serializable {
         this.impuestoVenta = impuestoVenta;
     }
 
-    public Producto getProducto(Integer id) {
-        if (id == null) {
-            throw new IllegalArgumentException("No hay id");
-        }
-        for (Producto producto : listProducto) {
-            if (id.equals(producto.getId())) {
-                return producto;
-            }
-        }
-        return null;
+    public Producto getProducto() {
+        return this.producto;
     }
 
     public void setProducto(Producto producto) {
@@ -155,24 +178,32 @@ public class ControllerFactura implements Serializable {
     }
 
     public void productoSelect(ValueChangeEvent e) throws Exception {
-        listProducto = servicioExtra.listProductoEmpresa(e.getNewValue().toString());
+        
+        listProducto = servicioExtra.listProductoEmpresa(Integer.parseInt(e.getNewValue().toString()));
     }
 
-    public void addListaCarrito(int productoId) throws Exception {
-        producto.setId(productoId);
-        item.setCantidad(this.cantidadProducto);
+    public void addListaCarrito() throws Exception {
+        producto = servicioProducto.read(producto);
+        item.setCantidad(getCantidadProducto());
         item.setProducto(servicioProducto.read(producto));
-        item.setDescuento(this.descuento);
+        item.setDescuento(getDescuento());
+        item.setProducto_Empresa_idEmpresa(empresa.getId());
         carrito.add(item);
-        setSubtotal(subtotal + (item.getProducto().getPrecio() * item.getCantidad()));
-        setTotal(total + subtotal + ((item.getProducto().getPrecio()*item.getProducto().getImpuestoVenta())/100) - ((item.getProducto().getPrecio()*item.getDescuento())/100));
+        setImpuestoVenta(item.getProducto().getImpuestoVenta());
+        setSubtotal(subtotal + (item.getProducto().getPrecio() * item.getCantidad())+(item.getCantidad() * ((item.getProducto().getPrecio() * getImpuestoVenta()) / 100)));
+        setTotal(total + subtotal - (subtotal * (item.getDescuento() / 100)));
+        producto = new Producto();
+        setCantidadProducto(0);
+        setDescuento(0);
+        item = new Item();
     }
 
-    public void deleteListaCarrito(Item item) {
-        setImpuestoVenta(impuestoVenta-(((item.getProducto().getPrecio()*item.getProducto().getImpuestoVenta())/100)));
-        setTotal(total - subtotal - ((item.getProducto().getPrecio()*item.getProducto().getImpuestoVenta())/100) + ((item.getProducto().getPrecio()*item.getDescuento())/100));
-        setSubtotal(subtotal - (item.getProducto().getPrecio() * item.getCantidad()));
+    public void deleteListaCarrito(Item item) throws Exception {
+        setTotal(total - (subtotal - (subtotal * (item.getDescuento() / 100))));
+        impuestoVenta = (item.getCantidad() * ((item.getProducto().getPrecio() * item.getProducto().getImpuestoVenta()) / 100));
+        setSubtotal(subtotal - ((item.getProducto().getPrecio() * item.getCantidad())+impuestoVenta));
         carrito.remove(item);
+        setImpuestoVenta(0);
     }
 
     public List<Item> getlistaCarrito() {
@@ -191,24 +222,32 @@ public class ControllerFactura implements Serializable {
         return estado == 0;
     }
 
-    public String agregarFactura(int idEmpresa, int idCliente) throws Exception {
-        Empresacliente empresacliente = servicioExtra.listEmpresaCliente(idEmpresa, idCliente);
-        List<Empresacliente> empresaClientes= new ArrayList();
-        empresaClientes.add(empresacliente);
+    public void agregarFactura() throws Exception {
+        Empresacliente empresacliente = servicioExtra.listEmpresaCliente(empresa.getId(), cliente.getId());
         Usuario usuario = new Usuario();
         usuario.setId(1);
         if (carrito != null) {
-            Item item1 = carrito.get(1);
             factura.setEstado(0);
             factura.setItems(carrito);
             factura.setSubtotal(subtotal);
             factura.setTotalImpuestoVenta(impuestoVenta);
             factura.setTotal(total);
             factura.setUsuario(servicioUsuario.read(usuario));
-            factura.setEmpresaclientes(empresaClientes);
+            factura.setEmpresacliente(empresacliente);
+            factura.setConsecutivoFactura(empresacliente.getEmpresa().getConsecutivo_Ini());
             servicioFactura.insert(factura);
-        }else
-            return "El carrito esta vacio";
-        return "facturaCRUD.xhtml";
+            empresa = servicioEmpresa.read(empresa);
+            empresa.setCantidadRestanteFacturas(empresa.getCantidadRestanteFacturas()-1);
+            empresa.setConsecutivo_Ini(empresa.getConsecutivo_Ini()+1);
+            servicioEmpresa.modify(empresa);
+            carrito.clear();
+            for(Item i:carrito){
+                servicioItem.insert(i);
+            }
+            setSubtotal(0);
+            setTotal(0);
+            setImpuestoVenta(0);
+            setDescuento(0);
+        } 
     }
 }
